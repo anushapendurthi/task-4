@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple To-Do List</title>
+<style>
+body {
+font-family: 'Arial', sans-serif;
+background-color: #f4f4f4;
+margin: 0;
+padding: 20px;
+}
+#new-task {
+margin-bottom: 20px;
+}
+ul {
+list-style: none;
+padding: 0;
+}
+ul li {
+background: #fff;
+margin-bottom: 10px;
+padding: 10px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.completed {
+text-decoration: line-through;
+color: #888;
+}
+</style>
+</head>
+<body>
+<h2>My To-Do List</h2>
+<input type="text" id="new-task" placeholder="Add a new task...">
+<button onclick="addTask()">Add Task</button>
+<ul id="task-list"></ul>
+<script>
+function addTask() {
+var taskInput = document.getElementById('new-task');
+var taskList = document.getElementById('task-list');
+var task = taskInput.value;
+if (task.trim() === '') return;
+var listItem = document.createElement('li');
+listItem.textContent = task;
+var deleteBtn = document.createElement('button');
+deleteBtn.textContent = 'Delete';
+deleteBtn.onclick = function() {
+taskList.removeChild(listItem);
+};
+var completeBtn = document.createElement('button');
+completeBtn.textContent = 'Complete';
+completeBtn.onclick = function() {
+listItem.classList.toggle('completed');
+};
+listItem.appendChild(deleteBtn);
+listItem.appendChild(completeBtn);
+taskList.appendChild(listItem);
+taskInput.value = '';
+}
+</script>
+</body> </html>
